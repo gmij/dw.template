@@ -1,8 +1,11 @@
 name: Build Json
 on:
-  #schedule:
-  #  - cron: '0 */1 * * *' # every 4 hours
+  schedule:
+    - cron: '0 */1 * * *' # every 4 hours
   workflow_dispatch:
+concurrency: 
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true  
 jobs:
   build:
     runs-on: ubuntu-latest
